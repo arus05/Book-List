@@ -3,10 +3,15 @@ import { BookContext } from "../contexts/BookContext"
 
 export default function BookDetails(props){
 
-  const { removeBook } = React.useContext(BookContext);
+  const { dispatch } = React.useContext(BookContext);
 
   return(
-    <li className="book" onClick={(event) => removeBook(props.book.id)}>
+    <li className="book"
+        onClick={(event) => dispatch({
+          type: "REMOVE_BOOK",
+          id: props.book.id
+        })}
+    >
       <p className="book-title">
         {props.book.title}
       </p>

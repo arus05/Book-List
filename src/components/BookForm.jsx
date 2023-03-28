@@ -3,14 +3,20 @@ import { BookContext } from "../contexts/BookContext";
 
 export default function BookForm(){
 
-  const { addBook } = React.useContext(BookContext);
+  const { dispatch } = React.useContext(BookContext);
   
   const [title, setTitle] = React.useState("")
   const [author, setAuthor] = React.useState("")
 
   function handleSubmit(event){
     event.preventDefault();
-    addBook(title, author);
+    dispatch({
+      type: "ADD_BOOK",
+      book: {
+        title,
+        author
+      }
+    })
     setTitle("")
     setAuthor("")
   }
